@@ -1,0 +1,179 @@
+html {
+  background-image: url(../public/img/Pattern.png);
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-attachment: fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+@font-face {
+  font-family: "Exo20"; 
+  src: url("../fonts/Exo20-Thin.ttf") format("truetype"); 
+  font-style: normal; 
+  font-weight: normal; 
+  } 
+
+.area {
+  width: 100%; 
+  height: 100%;
+  position: absolute;
+  /* z-index: 2; */
+  top: 0px;
+  left: 0px; 
+
+}
+
+.block  {	
+  display: inline-block;
+  /* position: absolute;  ломает адаптацию блоков*/
+  padding-top: 107px; 
+  padding-left: 70px;
+  padding-right: 70px;
+}
+
+.block div {
+  cursor: pointer;
+}
+
+.block img {
+  margin: 5px;
+  
+}
+
+
+
+.disable {
+  -webkit-filter: grayscale(100%);
+  -moz-filter: grayscale(100%);
+  -ms-filter: grayscale(100%);
+  -o-filter: grayscale(100%);
+  filter: grayscale(100%);
+  filter: gray; /* IE 6-9 */
+}
+
+#disable_block, #disable_block div,  #disable_block span {
+  cursor: default;
+}
+
+#disable_block .cat img, #disable_block h1, #disable_block h2  {
+  opacity:65%;
+}
+
+#disable_block .buy-text span {
+  color: #ffff66;
+}
+
+.back-pattern {
+  width: 100%;
+  height: 100%;
+}   
+
+.title_block {
+  position: relative;
+  top: -465px;
+  text-align: left;
+  padding-left: 50px;
+
+}
+
+span {
+  font-family: Trebuchet MS;
+  font-size: 16px;
+  font-style: normal;
+  color: #666666;
+}
+p {
+  margin: 0px;
+  margin-top: 1px;
+}
+h1, h2 {
+  margin: 5px;
+  font-family: Trebuchet MS;
+  font-size: 48px;
+  font-style: bold;
+  margin-left: 0px;
+}
+h2 {
+  margin-bottom: 10px ;
+  font-size: 24px;
+}
+p span {
+  font-size: 14px;
+  font-style: normal;
+}
+
+.cat {
+  position: relative;
+  top: -447px;
+  padding: 0px;
+  left: 4px;
+  text-align: left; 
+}
+
+.block div:first-child {
+  height: 400px;
+}
+
+.label {
+  position: relative;
+  top: -554px;
+  padding: 0px;
+  left:224px;
+  max-width: 81px;
+  max-height: 81px;
+}
+
+.weight {
+  font-family: Trebuchet MS;
+  font-size: 42px;
+  color: #fff
+}
+
+.label div {
+  position: relative;
+  text-align: center;
+  /* right: 16px; */
+  top:-80px;
+  left:5px;
+}
+
+.weight ~ p > span{
+  color: #fff;
+  font-size: 20px;
+  position: absolute;
+  top: 40px;
+  right: 30px;
+}
+
+#text-head > span {
+  color: #fff;
+  font-size: 36px;
+  font-family: 'Exo20';
+}
+#text-head  {
+  padding-top: 30px;
+  text-align: center;
+}
+
+.buy-text {
+  position: relative;
+  top: -525px;
+  text-align: center;
+}
+
+.buy-text > span:first-child {
+  color: #fff;
+  cursor: default;
+}
+
+.buy-text >span {
+  font-size: 13px;
+}
+
+.buy {
+  border-bottom: 1px dashed  #1a95d7;
+  color:#1a95d7 ;
+}
