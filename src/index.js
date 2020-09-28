@@ -14,7 +14,6 @@ class Pattern extends React.Component {
   }
 
   renderBlock(i) {
-    console.log(this.props);
     return <Block value={i} />;
   }
 
@@ -23,6 +22,7 @@ class Pattern extends React.Component {
         <div className="area">
             {this.renderBlock({    
                               taste: "с фуа-гра",  
+                              hover_message: "Котэ не одобряет?",
                               portion: 10,
                               countMouse: "",
                               textMouse: "мышь в подарок",
@@ -35,6 +35,7 @@ class Pattern extends React.Component {
                               }
             {this.renderBlock({    
                               taste: "с рыбой",  
+                              hover_message: "Котэ не одобряет?",
                               portion: 40,
                               countMouse: 2,
                               textMouse: "мыши в подарок",
@@ -46,6 +47,7 @@ class Pattern extends React.Component {
                               })}
             {this.renderBlock({    
                               taste: "с курой",  
+                              hover_message: "Котэ не одобряет?",
                               portion: 100,
                               countMouse: 5,
                               textMouse: "мышей в подарок",
@@ -75,19 +77,15 @@ class Block extends React.Component {
   }
 
   render () {
-    const { disabled } = this.props.value.disabled;
-
-    let blockClassName = ''
+    const disabled = this.props.value.disabled;
+    let hoverMessage = '';
+    let blockClassName = '';
     if (this.props.value.disabled) {
       blockClassName = 'disabled'
     } else if (this.state.selected) {
       blockClassName = 'selected'
+      hoverMessage = this.props.value.hover_message;
     }
-
-    // let disabled = this.props.value.disable;
-    // let backColor = this.props.value.selected == false ? <img src={back} alt={"back"} className={disabled == 1 ? "disable" : ""} /> : <img src={backPink} alt={"backPink"} className={disabled == 1 ? "disable" : ""} />;
-    // let ellipseColor = this.props.value.selected == false ? <img src={ellipse} alt={"ellipse"} className={disabled == 1 ? "disable" : ""} /> : <img src={ellipsePink} alt={"ellipsePink"} className={disabled == 1 ? "disable" : ""} />;
-
 
     return (
       <div className="block"> 
@@ -95,9 +93,9 @@ class Block extends React.Component {
           className={'wrapper '.concat(blockClassName)} 
           onClick={() => this.blockClick()}
         >
-        {/* {backColor} */}
           <div className="title_block">
-            <span> Сказочное заморское яство </span>
+            <span className="title"> Сказочное заморское яство </span>
+            <span className="hover_title">{hoverMessage}</span>
             <h1>Нямушка</h1>
             <h2>{this.props.value.taste}</h2>
             <p><span><b>{this.props.value.portion}</b> порций</span></p>
@@ -107,7 +105,6 @@ class Block extends React.Component {
             <img src={cat} alt={"cat"} />
           </div>
           <div className="label">
-            {/* {ellipseColor} */}
             <div>
               <span className="weight">{this.props.value.weight}</span>
               <p><span> кг</span></p>
@@ -115,8 +112,8 @@ class Block extends React.Component {
           </div>
         </div>
         <div className="description">
-          <span>{disabled == 1 ? this.props.value.disable_description : this.props.value.description}</span>
-          <span className="buy">{disabled == 1 ? "" : "купи"}</span>
+          <span>{disabled == true ? this.props.value.disable_description : this.props.value.description}</span>
+          <span className="buy">{disabled == true ? "" : "купи"}</span>
         </div>
       </div>
     );

@@ -10,6 +10,10 @@ body {
   z-index: 1;
 }
 
+.hover_title {
+  display: none ;
+}
+
 @font-face {
   font-family: "Exo20"; 
   src: url("../fonts/Exo20-Thin.ttf") format("truetype"); 
@@ -22,7 +26,6 @@ body {
   width: 100%; 
   height: 100%;
   position: absolute;
-  /* z-index: 2; */
   top: 0px;
   left: 0px; 
 
@@ -31,14 +34,12 @@ body {
 .block  {	
   display: inline-block;
   position: relative;
-  /* position: absolute;  ломает адаптацию блоков*/
-  padding: 107px;
+  padding-top: 107px;
+  padding-left: 75px;
+  padding-right: 75px;
   margin: 0 auto;
   width: 320px;
-  height: 530px;
-  /* padding-left: 100px;
-  padding-right: 100px; */
- 
+  height: 480px;
 }
 
 .wrapper {
@@ -48,32 +49,6 @@ body {
   width: 320px;
   height: 480px;
   cursor: pointer;
-}
-
-/* .block img {
-  margin: 5px;
-  
-} */
-
-.disable {
-  -webkit-filter: grayscale(100%);
-  -moz-filter: grayscale(100%);
-  -ms-filter: grayscale(100%);
-  -o-filter: grayscale(100%);
-  filter: grayscale(100%);
-  filter: gray; /* IE 6-9 */
-}
-
-#disable_block, #disable_block div,  #disable_block span {
-  cursor: default;
-}
-
-#disable_block .cat img, #disable_block h1, #disable_block h2  {
-  opacity:65%;
-}
-
-#disable_block .description span {
-  color: #ffff66;
 }
 
 .back-pattern {
@@ -125,10 +100,6 @@ p span {
   background-repeat: no-repeat; */
 }
 
-.wrapper div:first-child {
-  height: 400px;
-}
-
 .label {
   position: absolute;
   padding: 0px;
@@ -160,12 +131,13 @@ p span {
   right: 30px;
 }
 
-#text-head > span {
+.text-head > span {
   color: #fff;
   font-size: 36px;
   font-family: 'Exo20';
 }
-#text-head  {
+
+.text-head  {
   padding-top: 30px;
   text-align: center;
 }
@@ -181,7 +153,7 @@ p span {
   cursor: default;
 }
 
-.description >span {
+.description > span {
   font-size: 13px;
 }
 
@@ -189,4 +161,76 @@ p span {
   border-bottom: 1px dashed  #1a95d7;
   color:#1a95d7 ;
   cursor: pointer;
+}
+
+.block .selected {
+  background-image: url(../public/img/Back-pink.png);
+  background-repeat: no-repeat;
+}
+
+.block .selected .label {
+  background-image: url(../public/img/Ellipse-pink.png);
+  background-repeat: no-repeat;
+}
+
+.block .disabled {
+  background-image: url(../public/img/Back-disabled.png);
+  background-repeat: no-repeat;
+}
+
+.block .disabled .label {
+  background-image: url(../public/img/Ellipse-disabled.png);
+  background-repeat: no-repeat;
+}
+
+.block .disabled {
+  cursor: default;
+}
+
+.disabled .cat img, .disabled h1, .disabled h2, .disabled span  {
+  opacity:50%;
+}
+
+.disabled ~ .description span {
+  color: #ffff66;
+}
+
+.wrapper:hover  {
+  background-image: url(../public/img/Back-defaultHover.png);
+  background-repeat: no-repeat;
+}
+.wrapper:hover .label {
+  background-image: url(../public/img/Ellipse-defaultHover.png);
+  background-repeat: no-repeat;
+}
+
+.buy:hover {
+  color: #2ea8e6;
+} 
+
+.disabled:hover  {
+  background-image: url(../public/img/Back-disabled.png);
+  background-repeat: no-repeat;
+}
+.disabled:hover .label {
+  background-image: url(../public/img/Ellipse-disabled.png);
+  background-repeat: no-repeat;
+}
+
+.selected:hover  {
+  background-image: url(../public/img/Back-pinkSelectedHover.png);
+  background-repeat: no-repeat;
+}
+
+.selected:hover .label {
+  background-image: url(../public/img/Ellipse-pinkSelectedHover.png);
+  background-repeat: no-repeat;
+}
+
+.selected:hover .title {
+  display: none;
+}
+
+.selected:hover .hover_title {
+  display: block;
 }
