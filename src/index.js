@@ -6,6 +6,7 @@ import backPink from '../public/img/Back-pink.png';
 import cat from '../public/img/Cat.png';
 import ellipse from '../public/img/Ellipse.png';
 import ellipsePink from '../public/img/Ellipse-pink.png';
+{/* <img src={require("./public/img/Back.png")} alt={"cat"} /> */}
 
 class Pattern extends React.Component {
   constructor(props) {
@@ -20,25 +21,20 @@ class Pattern extends React.Component {
   render() { 
     return ( 
         <div className="area">
-          <div className="block">
             {this.renderBlock({    
-                              selected: 0,
-                              h2: "с фуа-гра",  
+                              taste: "с фуа-гра",  
                               portion: 10,
                               countMouse: "",
                               textMouse: "мышь в подарок",
                               weight: "0,5",
-                              selected_description:  "",
+                              selected_description:  "Печень утки разварная с артишоками.",
                               description: "Чего сидишь? Порадуй котэ, ",
                               disable_description: "",
-                              disable: 0
+                              disabled: false
                               })
                               }
-          </div>
-          <div className="block">
             {this.renderBlock({    
-                              selected: 0,
-                              h2: "с рыбой",  
+                              taste: "с рыбой",  
                               portion: 40,
                               countMouse: 2,
                               textMouse: "мыши в подарок",
@@ -46,23 +42,19 @@ class Pattern extends React.Component {
                               selected_description: "Головы щучьи с чесноком да свежайшая сёмгушка.",
                               description: "Чего сидишь? Порадуй котэ, ",
                               disable_description: "",
-                              disable: 0
+                              disabled: false
                               })}
-          </div>
-          <div className="block">
             {this.renderBlock({    
-                              selected: 0,
-                              h2: "с курой",  
+                              taste: "с курой",  
                               portion: 100,
                               countMouse: 5,
                               textMouse: "мышей в подарок",
                               weight: 5,
-                              selected_description:  "",
-                              description: "",
+                              selected_description:  "Филе из цыплят с трюфелями в бульоне.",
+                              description: "Чего сидишь? Порадуй котэ, ",
                               disable_description: "Печалька с курой закончился.",
-                              disable: 1
+                              disabled: true
                               })}
-          </div>
         </div>       
       
     );
@@ -73,55 +65,58 @@ class Block extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      back: null,
+      selected: false,
     };
+    this.blockClick = this.blockClick.bind(this)
   }
 
   blockClick() {
-    // console.log(this);
-    // this.setState({selected: 1});
-   
-    // const element = <div tabIndex="0"></div>;
-    ReactDOM.render(
-      <Pattern value={1} />,
-      document.getElementById('root')
-      
-    );
-    
+    this.setState({ selected: !this.state.selected });
   }
 
   render () {
-    let disable = this.props.value.disable;
-    let backColor = this.props.value.selected == 0 ? <img src={back} alt={"back"} className={disable == 1 ? "disable" : ""} /> : <img src={backPink} alt={"backPink"} className={disable == 1 ? "disable" : ""} />;
-    let ellipseColor = this.props.value.selected == 0 ? <img src={ellipse} alt={"ellipse"} className={disable == 1 ? "disable" : ""} /> : <img src={ellipsePink} alt={"ellipsePink"} className={disable == 1 ? "disable" : ""} />;
+    const { disabled } = this.props.value.disabled;
+
+    let blockClassName = ''
+    if (this.props.value.disabled) {
+      blockClassName = 'disabled'
+    } else if (this.state.selected) {
+      blockClassName = 'selected'
+    }
+
+    // let disabled = this.props.value.disable;
+    // let backColor = this.props.value.selected == false ? <img src={back} alt={"back"} className={disabled == 1 ? "disable" : ""} /> : <img src={backPink} alt={"backPink"} className={disabled == 1 ? "disable" : ""} />;
+    // let ellipseColor = this.props.value.selected == false ? <img src={ellipse} alt={"ellipse"} className={disabled == 1 ? "disable" : ""} /> : <img src={ellipsePink} alt={"ellipsePink"} className={disabled == 1 ? "disable" : ""} />;
+
 
     return (
-      <div 
-        id={disable == 1 ? "disable_block" : "active"} 
-        onClick={() => this.blockClick()}
-      > 
-      
-        {backColor}
-        <div className="title_block">
-          <span className="first-title"> Сказочное заморское яство </span>
-          <h1>Нямушка</h1>
-          <h2>{this.props.value.h2}</h2>
-          <p><span><b>{this.props.value.portion}</b> порций</span></p>
-          <p><span><b>{this.props.value.countMouse}</b> {this.props.value.textMouse}</span></p>
-        </div>
-        <div className="cat">
-          <img src={cat} alt={"cat"} />
-        </div>
-        <div className="label">
-          {ellipseColor}
-          <div>
-            <span className="weight">{this.props.value.weight}</span>
-            <p><span> кг</span></p>
+      <div className="block"> 
+        <div 
+          className={'wrapper '.concat(blockClassName)} 
+          onClick={() => this.blockClick()}
+        >
+        {/* {backColor} */}
+          <div className="title_block">
+            <span> Сказочное заморское яство </span>
+            <h1>Нямушка</h1>
+            <h2>{this.props.value.taste}</h2>
+            <p><span><b>{this.props.value.portion}</b> порций</span></p>
+            <p><span><b>{this.props.value.countMouse}</b> {this.props.value.textMouse}</span></p>
+          </div>
+          <div className="cat">
+            <img src={cat} alt={"cat"} />
+          </div>
+          <div className="label">
+            {/* {ellipseColor} */}
+            <div>
+              <span className="weight">{this.props.value.weight}</span>
+              <p><span> кг</span></p>
+            </div>
           </div>
         </div>
-        <div className="buy-text">
-          <span>{disable == 1 ? this.props.value.disable_description : this.props.value.description}</span>
-          <span className="buy">{disable == 1 ? "" : "купи"}</span>
+        <div className="description">
+          <span>{disabled == 1 ? this.props.value.disable_description : this.props.value.description}</span>
+          <span className="buy">{disabled == 1 ? "" : "купи"}</span>
         </div>
       </div>
     );
