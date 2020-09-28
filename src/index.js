@@ -19,7 +19,11 @@ class Pattern extends React.Component {
 
   render() { 
     return ( 
+      
         <div className="area">
+          <div class="text-head">
+            <span> Ты сегодня покормил кота?</span>
+          </div>
             {this.renderBlock({    
                               taste: "с фуа-гра",  
                               hover_message: "Котэ не одобряет?",
@@ -42,8 +46,8 @@ class Pattern extends React.Component {
                               weight: 2,
                               selected_description: "Головы щучьи с чесноком да свежайшая сёмгушка.",
                               description: "Чего сидишь? Порадуй котэ, ",
-                              disable_description: "",
-                              disabled: false
+                              disable_description: "Печалька с рыбой закончился.",
+                              disabled: true
                               })}
             {this.renderBlock({    
                               taste: "с курой",  
@@ -55,7 +59,7 @@ class Pattern extends React.Component {
                               selected_description:  "Филе из цыплят с трюфелями в бульоне.",
                               description: "Чего сидишь? Порадуй котэ, ",
                               disable_description: "Печалька с курой закончился.",
-                              disabled: true
+                              disabled: false
                               })}
         </div>       
       
@@ -77,14 +81,20 @@ class Block extends React.Component {
   }
 
   render () {
-    const disabled = this.props.value.disabled;
+    let showBuy = false;
+    let description = '';
     let hoverMessage = '';
     let blockClassName = '';
     if (this.props.value.disabled) {
       blockClassName = 'disabled'
+      description = this.props.value.disable_description;
     } else if (this.state.selected) {
       blockClassName = 'selected'
       hoverMessage = this.props.value.hover_message;
+      description = this.props.value.selected_description;
+    } else {
+      description = this.props.value.description;
+      showBuy = true;
     }
 
     return (
@@ -112,8 +122,13 @@ class Block extends React.Component {
           </div>
         </div>
         <div className="description">
-          <span>{disabled == true ? this.props.value.disable_description : this.props.value.description}</span>
-          <span className="buy">{disabled == true ? "" : "купи"}</span>
+          <span>{description}</span>
+          <span 
+            className="buy" 
+            onClick={() => this.blockClick()}
+          >
+            {showBuy == true ? "купи" : ""}
+          </span>
         </div>
       </div>
     );
