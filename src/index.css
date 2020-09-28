@@ -1,3 +1,10 @@
+@media (max-width: 1410px) {
+  .block {
+    padding-top: 35px !important;
+    padding-bottom: 35px !important;
+  }
+}
+
 body {
   background-image: url(../public/img/Pattern.png);
   background-repeat: no-repeat;
@@ -35,10 +42,8 @@ body {
 .block  {	
   display: inline-block;
   position: relative;
-  padding-top: 23px;
-  padding-left: 75px;
-  padding-right: 75px;
-  margin: 0 auto;
+  padding: 3% 75px;
+  margin: 0px auto;
   width: 320px;
   height: 480px;
 }
@@ -62,7 +67,6 @@ body {
   top: 25px;
   text-align: left;
   padding-left: 50px;
-
 }
 
 span {
@@ -71,21 +75,24 @@ span {
   font-style: normal;
   color: #666666;
 }
+
 p {
   margin: 0px;
-  margin-top: 1px;
 }
+
 h1, h2 {
-  margin: 5px;
+  margin: 0px;
   font-family: Trebuchet MS;
   font-size: 48px;
   font-style: bold;
   margin-left: 0px;
 }
+
 h2 {
   margin-bottom: 10px ;
   font-size: 24px;
 }
+
 p span {
   font-size: 14px;
   font-style: normal;
@@ -95,10 +102,8 @@ p span {
   position: absolute;
   bottom: 0px;
   padding: 0px;
-  left: 5px;
+  left: 4.2px;
   text-align: left; 
-  /* background-image: url(../public/img/Cat.png);
-  background-repeat: no-repeat; */
 }
 
 .label {
@@ -139,15 +144,17 @@ p span {
 }
 
 .text-head  {
-  padding-top: 38px;
-  padding-left: 50px;
-  text-align: center;
+  position: relative;
+  margin: 0px auto;
+  width: 455px;
+  padding: 68px 10px 0px 10px;
 }
 
 .description {
   position: relative;
-  top: 495px;
+  top: 490px;
   text-align: center;
+  padding-bottom: 15px;
 }
 
 .description > span:first-child {
@@ -235,4 +242,22 @@ p span {
 
 .selected:hover .hover_title {
   display: block;
+}
+
+.without-hover .hover_title {
+  display: none !important;
+}
+
+.without-hover .title {
+  display: block !important;
+}
+
+.without-hover:hover  {
+  background-image: url(../public/img/Back-pink.png);
+  background-repeat: no-repeat;
+}
+
+.without-hover:hover .label {
+  background-image: url(../public/img/Ellipse-pink.png);
+  background-repeat: no-repeat;
 }

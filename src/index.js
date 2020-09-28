@@ -1,12 +1,8 @@
 import React from 'react';
 import ReactDOM, { render } from 'react-dom';
 import './index.css';
-import back from '../public/img/Back.png';
-import backPink from '../public/img/Back-pink.png';
+import data from './data.js';
 import cat from '../public/img/Cat.png';
-import ellipse from '../public/img/Ellipse.png';
-import ellipsePink from '../public/img/Ellipse-pink.png';
-{/* <img src={require("./public/img/Back.png")} alt={"cat"} /> */}
 
 class Pattern extends React.Component {
   constructor(props) {
@@ -19,50 +15,12 @@ class Pattern extends React.Component {
 
   render() { 
     return ( 
-      
         <div className="area">
-          <div class="text-head">
+          <div className="text-head">
             <span> Ты сегодня покормил кота?</span>
-          </div>
-            {this.renderBlock({    
-                              taste: "с фуа-гра",  
-                              hover_message: "Котэ не одобряет?",
-                              portion: 10,
-                              countMouse: "",
-                              textMouse: "мышь в подарок",
-                              weight: "0,5",
-                              selected_description:  "Печень утки разварная с артишоками.",
-                              description: "Чего сидишь? Порадуй котэ, ",
-                              disable_description: "",
-                              disabled: false
-                              })
-                              }
-            {this.renderBlock({    
-                              taste: "с рыбой",  
-                              hover_message: "Котэ не одобряет?",
-                              portion: 40,
-                              countMouse: 2,
-                              textMouse: "мыши в подарок",
-                              weight: 2,
-                              selected_description: "Головы щучьи с чесноком да свежайшая сёмгушка.",
-                              description: "Чего сидишь? Порадуй котэ, ",
-                              disable_description: "Печалька с рыбой закончился.",
-                              disabled: true
-                              })}
-            {this.renderBlock({    
-                              taste: "с курой",  
-                              hover_message: "Котэ не одобряет?",
-                              portion: 100,
-                              countMouse: 5,
-                              textMouse: "мышей в подарок",
-                              weight: 5,
-                              selected_description:  "Филе из цыплят с трюфелями в бульоне.",
-                              description: "Чего сидишь? Порадуй котэ, ",
-                              disable_description: "Печалька с курой закончился.",
-                              disabled: false
-                              })}
+          </div> 
+          {data.data.map(item => <Block {...item} />)}
         </div>       
-      
     );
   }
 }
@@ -76,8 +34,12 @@ class Block extends React.Component {
     this.blockClick = this.blockClick.bind(this)
   }
 
-  blockClick() {
-    this.setState({ selected: !this.state.selected });
+  blockClick= () => {
+    this.setState({ selected: !this.state.selected, withoutHover: true });
+  }
+
+  onMouseOutHandle = () => {
+    this.setState({ withoutHover: false });
   }
 
   render () {
@@ -85,15 +47,19 @@ class Block extends React.Component {
     let description = '';
     let hoverMessage = '';
     let blockClassName = '';
-    if (this.props.value.disabled) {
+    
+    if (this.props.disabled) {
       blockClassName = 'disabled'
-      description = this.props.value.disable_description;
+      description = this.props.disable_description;
     } else if (this.state.selected) {
       blockClassName = 'selected'
-      hoverMessage = this.props.value.hover_message;
-      description = this.props.value.selected_description;
+      hoverMessage = this.props.hover_message;
+      description = this.props.selected_description;
+      if (this.state.withoutHover && this.state.selected) {
+        blockClassName += ' without-hover'
+      }
     } else {
-      description = this.props.value.description;
+      description = this.props.description;
       showBuy = true;
     }
 
@@ -101,22 +67,24 @@ class Block extends React.Component {
       <div className="block"> 
         <div 
           className={'wrapper '.concat(blockClassName)} 
-          onClick={() => this.blockClick()}
+          onClick={() => this.blockClick()} 
+          onPointerLeave={this.onMouseOutHandle}
         >
           <div className="title_block">
             <span className="title"> Сказочное заморское яство </span>
             <span className="hover_title">{hoverMessage}</span>
             <h1>Нямушка</h1>
-            <h2>{this.props.value.taste}</h2>
-            <p><span><b>{this.props.value.portion}</b> порций</span></p>
-            <p><span><b>{this.props.value.countMouse}</b> {this.props.value.textMouse}</span></p>
+            <h2>{this.props.taste}</h2>
+            <p><span><b>{this.props.portion}</b> порций</span></p>
+            <p><span><b>{this.props.count_mouse}</b> {this.props.text_mouse}</span></p>
+            <p><span>{this.props.extra_information}</span></p>
           </div>
           <div className="cat">
             <img src={cat} alt={"cat"} />
           </div>
           <div className="label">
             <div>
-              <span className="weight">{this.props.value.weight}</span>
+              <span className="weight">{this.props.weight}</span>
               <p><span> кг</span></p>
             </div>
           </div>
@@ -132,9 +100,7 @@ class Block extends React.Component {
         </div>
       </div>
     );
-
   }
-
 }
 
 ReactDOM.render(
