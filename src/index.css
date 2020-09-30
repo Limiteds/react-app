@@ -69,10 +69,10 @@ body {
   padding-left: 50px;
 }
 
-span {
+span, p {
   font-family: Trebuchet MS;
   font-size: 16px;
-  font-style: normal;
+  font-weight: normal;
   color: #666666;
 }
 
@@ -93,10 +93,13 @@ h2 {
   font-size: 24px;
 }
 
-.title_block p, .title_block:last-child {
+.title_block p, .title_block:last-child, .count_item{
   font-size: 14px;
-  font-style: normal;
   font-family: Trebuchet MS;
+}
+
+.count_item {
+  font-weight: bold
 }
 
 .cat {
@@ -197,7 +200,7 @@ h2 {
   cursor: default;
 }
 
-.disabled .cat img, .disabled h1, .disabled h2, .disabled p  {
+.disabled .cat img, .disabled h1, .disabled h2, .disabled p, .disabled span  {
   opacity:50%;
 }
 

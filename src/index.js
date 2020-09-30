@@ -72,8 +72,8 @@ class Block extends React.Component {
             <span className="hover_title">{hoverMessage}</span>
             <h1>Нямушка</h1>
             <h2>{this.props.taste}</h2>
-            <p><b>{this.props.portion}</b> порций</p>
-            <p><b>{this.props.countMouse}</b> {this.props.textMouse}</p>
+            <p><span className ="count_item">{this.props.portion}</span> порций</p>
+            <p><span className ="count_item">{this.props.countMouse}</span> {this.props.textMouse}</p>
             <p>{this.props.extraInformation}</p>
           </div>
           <div className="cat">
