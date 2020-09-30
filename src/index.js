@@ -93,7 +93,8 @@ class Block extends React.Component {
           <span>{description}</span>
           <span 
             className="buy" 
-            onClick={() => this.blockClick()}
+            onClick={() => this.blockClick()} 
+           
           >
             {showBuy == true ? "купи" : ""}
           </span>
