@@ -9,17 +9,13 @@ class Pattern extends React.Component {
     super(props);
   }
 
-  renderBlock(i) {
-    return <Block value={i} />;
-  }
-
   render() { 
     return ( 
         <div className="area">
           <div className="text-head">
             <span> Ты сегодня покормил кота?</span>
           </div> 
-          {data.data.map(item => <Block {...item} />)}
+          {data.map(item => <Block {...item} />)}
         </div>       
     );
   }
@@ -30,11 +26,12 @@ class Block extends React.Component {
     super(props);
     this.state = {
       selected: false,
+      withoutHover: false
     };
-    this.blockClick = this.blockClick.bind(this)
+    this.onBlockClick = this.onBlockClick.bind(this)
   }
 
-  blockClick= () => {
+  onBlockClick= () => {
     this.setState({ selected: !this.state.selected, withoutHover: true });
   }
 
@@ -50,11 +47,11 @@ class Block extends React.Component {
     
     if (this.props.disabled) {
       blockClassName = 'disabled'
-      description = this.props.disable_description;
+      description = this.props.disableDescription;
     } else if (this.state.selected) {
       blockClassName = 'selected'
-      hoverMessage = this.props.hover_message;
-      description = this.props.selected_description;
+      hoverMessage = this.props.hoverMessage;
+      description = this.props.selectedDescription;
       if (this.state.withoutHover && this.state.selected) {
         blockClassName += ' without-hover'
       }
@@ -67,7 +64,7 @@ class Block extends React.Component {
       <div className="block"> 
         <div 
           className={'wrapper '.concat(blockClassName)} 
-          onClick={() => this.blockClick()} 
+          onClick={this.onBlockClick}  
           onPointerLeave={this.onMouseOutHandle}
         >
           <div className="title_block">
@@ -75,12 +72,12 @@ class Block extends React.Component {
             <span className="hover_title">{hoverMessage}</span>
             <h1>Нямушка</h1>
             <h2>{this.props.taste}</h2>
-            <p><span><b>{this.props.portion}</b> порций</span></p>
-            <p><span><b>{this.props.count_mouse}</b> {this.props.text_mouse}</span></p>
-            <p><span>{this.props.extra_information}</span></p>
+            <p><b>{this.props.portion}</b> порций</p>
+            <p><b>{this.props.countMouse}</b> {this.props.textMouse}</p>
+            <p>{this.props.extraInformation}</p>
           </div>
           <div className="cat">
-            <img src={cat} alt={"cat"} />
+            <img src={cat} alt="cat" />
           </div>
           <div className="label">
             <div>
@@ -93,8 +90,7 @@ class Block extends React.Component {
           <span>{description}</span>
           <span 
             className="buy" 
-            onClick={() => this.blockClick()} 
-           
+            onClick={this.onBlockClick} 
           >
             {showBuy == true ? "купи" : ""}
           </span>
