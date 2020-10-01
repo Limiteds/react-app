@@ -68,8 +68,8 @@ class Block extends React.Component {
           onPointerLeave={this.onMouseOutHandle}
         >
           <div className="title_block">
-            <span className="title"> Сказочное заморское яство </span>
-            <span className="hover_title">{hoverMessage}</span>
+            <p><span className="title"> Сказочное заморское яство </span></p>
+            <p><span className="hover_title">{hoverMessage}</span></p>
             <h1>Нямушка</h1>
             <h2>{this.props.taste}</h2>
             <p><span className ="count_item">{this.props.portion}</span> порций</p>
