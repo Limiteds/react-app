@@ -8,7 +8,7 @@ export default [
         weight: "0,5",
         selectedDescription:  "Печень утки разварная с артишоками.",
         description: "Чего сидишь? Порадуй котэ, ",
-        disableDescription: "",
+        disableDescription: "Печалька с фуа-гра закончился.",
         disabled: false,
         extraInformation: ""
     },
